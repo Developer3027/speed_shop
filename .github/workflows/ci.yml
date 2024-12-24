@@ -60,8 +60,8 @@ jobs:
       postgres:
         image: postgres
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: postgres # Default for postgres. Container will be destroyed after run.
+          POSTGRES_PASSWORD: postgres # Default for postgres.
         ports:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -76,24 +76,24 @@ jobs:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips postgresql-client
 
-      - name: Install Node.js
+      - name: Install Node.js # Need npm besause of Flowbite
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      - name: Checkout code
+      - name: Checkout code # Grab the code for the package json
         uses: actions/checkout@v4
 
-      - name: Install Node packages
+      - name: Install Node packages # Only install packages in package json
         run: npm ci
 
-      - name: Set up Ruby
+      - name: Set up Ruby # Will run bundle auto on setup I assume because bundler-cache true.
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Run tests
+      - name: Run tests # Run Rails app tests
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
