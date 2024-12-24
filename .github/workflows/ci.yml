@@ -99,8 +99,6 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
           # REDIS_URL: redis://localhost:6379/0
         run: 
-          bundle install bundler
-          bundle install --jobs 4 --retry 3
           bin/rails db:test:prepare test test:system
 
       - name: Keep screenshots from failed system tests
