@@ -81,11 +81,11 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install Flowbite
-        run: npm install flowbite
-
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Install Node packages
+        run: npm ci
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
