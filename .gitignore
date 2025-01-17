@@ -7,11 +7,11 @@
 # ignore the gems of bundle
 /vendor/bundle
 
-# Ignore bundler config.
-/.bundle
-
 # Ignore node modules
 /node_modules
+
+# Ignore bundler config.
+/.bundle
 
 # Ignore all environment files.
 /.env*

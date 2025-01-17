@@ -23,7 +23,14 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-gray-900">
+    <header>
+      <%= render "shared/navbar" %>
+    </header>
+    <% if alert || notice %>
+      <%= render "shared/errors/alert" %>
+      <%= render "shared/errors/notice" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
